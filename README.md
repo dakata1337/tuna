@@ -5,4 +5,4 @@ Tuna is a simple power managment daemon
   <img src="assets/logo.png" width=30%/>
 </h6>
 
-![video example](./assets/example.gif)
+![video example](assets/example.webp)
