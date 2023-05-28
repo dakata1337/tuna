@@ -1,0 +1,7 @@
+[default]
+cpu_mode = "powersave"
+
+[[apps]]
+name = "cargo"
+cpu_mode = "performance"
+
