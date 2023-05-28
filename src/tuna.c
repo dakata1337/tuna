@@ -87,9 +87,7 @@ void run(struct tuna_state *state) {
             printf("Config file updated\n");
         }
 
-        time_t start = clock();
         update_check(state);
-        printf("Time taken: %f\n", (double)(clock() - start) / CLOCKS_PER_SEC);
         sleep(2);
     }
 }
@@ -139,9 +137,10 @@ void update_check(struct tuna_state *state) {
         printf("cpu mode: %s -> %s\n", from, cpu_mode_str);
         for (uint16_t core = 0; core < state->sys_info->core_count; core++) {
             char path[256] = {0};
-            snprintf(path, sizeof(path),
-                     "/sys/devices/system/cpu/cpu%d/cpufreq/scaling_governor",
-                     core);
+            snprintf(
+                path, sizeof(path),
+                "/sys/devices/system/cpu/cpufreq/policy%d/scaling_governor",
+                core);
             FILE *cpu_file = fopen(path, "w");
             assert(cpu_file);
             fwrite(cpu_mode_str, sizeof(char), cpu_mode_str_len, cpu_file);
